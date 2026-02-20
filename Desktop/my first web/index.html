@@ -3,9 +3,54 @@
 <head>
     <mata charset="UTF-8">
     <title>hat's first web</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>hat's first project</h1>
     <p>HTML学習中です</p>
+    <button onclick="alert('申し込みありがとうございます!')">
+       申し込む 
+    </button>
+    <h2>申し込みフォーム</h2>
+
+    <form id="myForm">
+      <label>お名前:</label><br>
+      <input type="text" id="text" placeholder="名前を入力"><br><br>
+
+      <label>メール:</label><br>
+      <input type="email" id="email" placeholder="メールアドレス"><br><br>
+
+      <label>お問い合わせ内容</label><br>
+      <textarea rows="10" cols="60" placeholder="ここに内容を書いてください"></textarea><br><br>
+
+      <button type="submit">送信</button>
+    </form>
+
+    <p id="message" style="display:none;">
+      送信ありがとうございました！
+    </p>
+    <script>
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("text").value;
+      const email = document.getElementById("email").value;
+      
+      if (name == "") {
+        alert("名前を入力してください！");
+        return;
+      }
+      if (email === "") {
+        alert("メールを入力してください！");
+        return;
+      }
+      document.getElementById("myForm").style.display = "none";
+      document.getElementById("message").style.display = "block";
+      setTimeout(function(){
+        document.getElementById("myForm").style.display = "block";
+        document.getElementById("message").style.display = "none";
+        document.getElementById("myForm").reset(); // 入力内容もリセット
+      }, 3000); // 3000ミリ = 3秒
+    });
+    </script>
 </body>
 </html>
